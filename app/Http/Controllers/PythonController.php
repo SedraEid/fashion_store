@@ -23,7 +23,7 @@ class PythonController extends Controller
             ]);
         }
     
-       
+        // تحديد مسار السكربت البايثون
         $pythonScript = base_path('python_script/run.py');
         $imagePathArg = escapeshellarg(realpath($imagePath));
         

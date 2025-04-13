@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone');
             $table->string('address');
-            $table->string('user-type')->default('customer');
+            $table->tinyInteger('user_type')->default(0)->comment('0 = customer, 1 = seller');
             $table->timestamps();
         });
     }

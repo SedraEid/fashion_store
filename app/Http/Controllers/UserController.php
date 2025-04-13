@@ -17,6 +17,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
+            'user_type' => 'in:0,1', 
         ];
 
         $validator = Validator::make($req->all(), $rules);
@@ -31,14 +32,28 @@ class UserController extends Controller
             'password' => Hash::make($req->password),
             'phone' => $req->phone,
             'address' => $req->address,
+            'user_type' => $req->user_type ?? 0,
         ]);
 
+        if (($req->user_type ?? 0) == 0) {
+            $user->customer()->create(); 
+        }
+        $user->profile()->create([
+            'gender' => $req->gender,
+            'birthdate' => $req->birthdate,
+            'city' => $req->city,
+
+        ]);
+        
+       
         $token = $user->createToken('personal access token')->plainTextToken;
 
-        $response = ['user' => $user, 'token' => $token];
-
-        return response()->json($response, 200);
+        return response()->json(['user' => $user, 'token' => $token], 200);
     }
+
+
+
+
 
     public function login(Request $req) {
         $rules=[
@@ -57,5 +72,6 @@ class UserController extends Controller
         ];
         return response()->json($response,400);
     }
+
 
 }

@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PythonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ImageAnalysisController;
+
+
+
 
 
 
@@ -22,10 +28,25 @@ use App\Http\Controllers\Controller;
 Route::post('/analyze-skin', [PythonController::class, 'analyzeSkin']);
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
-Route::post('/upload-image', [Controller::class, 'saveImage']);
-Route::post('/upload-ana', [Controller::class, 'uploadAndAnalyze']);
 
 
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/profile', [ProfileController::class, 'store']);
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::put('/profile', [ProfileController::class, 'update']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/customer', [CustomerController::class, 'store']);
+    Route::get('/customer', [CustomerController::class, 'getProfile']);
+});
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/image_analysis', [ImageAnalysisController::class, 'uploadAndAnalyze']);
+});
 
 
 
