@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('/admin')->namespace('App\Http\Controllers\admin')->group(function(){
+    Route::get('dashboard','AdminController@dashboard');
+});
+Route::get('/login', function () {
+    return view('admin.login'); // تأكد من أن اسم الملف 'login.blade.php'
+})->name('login');
+
+Route::get('/register', function () {
+    return view('admin.registr'); // تأكد من أن اسم الملف 'register.blade.php'
+})->name('registr');

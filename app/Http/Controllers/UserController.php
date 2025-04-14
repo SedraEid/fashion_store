@@ -18,6 +18,7 @@ class UserController extends Controller
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
             'user_type' => 'in:0,1', 
+            'store_name' => 'required_if:user_type,1'
         ];
 
         $validator = Validator::make($req->all(), $rules);
@@ -37,7 +38,14 @@ class UserController extends Controller
 
         if (($req->user_type ?? 0) == 0) {
             $user->customer()->create(); 
+        }elseif ($req->user_type == 1) {
+            $user->seller()->create([
+                'store_name' => $req->store_name
+            ]);
         }
+
+
+
         $user->profile()->create([
             'gender' => $req->gender,
             'birthdate' => $req->birthdate,

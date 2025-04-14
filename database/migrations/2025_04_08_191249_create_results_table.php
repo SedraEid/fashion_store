@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
     $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
     $table->string('result_value');
-    $table->foreignId('customer_question_answer')->nullable()->constrained('customer_question_answer')->onDelete('set null');
     $table->timestamps();
         });
     }

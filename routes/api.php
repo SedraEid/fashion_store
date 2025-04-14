@@ -6,8 +6,8 @@ use App\Http\Controllers\PythonController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ImageAnalysisController;
+use App\Http\Controllers\CustomerController;
 
 
 
@@ -25,11 +25,15 @@ use App\Http\Controllers\ImageAnalysisController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/analyze-skin', [PythonController::class, 'analyzeSkin']);
+Route::post('/analyze-skin', [PythonController::class, 'analyzeSkin']);/////////
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
 
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/customer', [CustomerController::class, 'store']);
+    Route::get('/customer', [CustomerController::class, 'getProfile']);
+});
 
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -38,10 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update']);
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/customer', [CustomerController::class, 'store']);
-    Route::get('/customer', [CustomerController::class, 'getProfile']);
-});
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
