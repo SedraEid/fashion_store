@@ -21,97 +21,90 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Admin</b></a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../../index.html" method="post">
+      <form action="{{ route('seller.register') }}" method="POST">
+        @csrf
+      
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
+          <input type="text" class="form-control" name="name" placeholder="Full name" required>
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
+            <div class="input-group-text"><span class="fas fa-user"></span></div>
           </div>
         </div>
+      
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" name="email" placeholder="Email" required>
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
+            <div class="input-group-text"><span class="fas fa-envelope"></span></div>
           </div>
         </div>
+      
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password" required>
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
+            <div class="input-group-text"><span class="fas fa-lock"></span></div>
           </div>
         </div>
-
+      
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Phone">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+          <input type="text" class="form-control" name="phone" placeholder="Phone">
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-phone"></span></div>
           </div>
-
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Address">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+        </div>
+      
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="address" placeholder="Address">
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-map-marker-alt"></span></div>
           </div>
-
-          <div class="input-group mb-3">
-            <div class="form-check form-check-inline">
-
-              <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-              <label class="form-check-label" for="male">male</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-              <label class="form-check-label" for="female">female</label>
-            </div>
+        </div>
+      
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="store_name" placeholder="Store Name" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-store"></span></div>
           </div>
-          
-
-
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="City">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+        </div>
+      
+        <div class="input-group mb-3">
+          <input type="date" class="form-control" name="birthdate" placeholder="Birthdate" required>
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-calendar-alt"></span></div>
           </div>
-
-
-
-
-
-
-
-       
+        </div>
+      
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="city" placeholder="City">
+          <div class="input-group-append">
+            <div class="input-group-text"><span class="fas fa-city"></span></div>
+          </div>
+        </div>
+      
+        <div class="input-group mb-3">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+        </div>
+      
         <div class="row">
-         
-          <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
           </div>
-          <!-- /.col -->
         </div>
       </form>
-
+      
       
 
       <a href="{{ route('login') }}" class="text-center">I already have a membership</a>

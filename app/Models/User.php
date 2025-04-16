@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Seller;
+use App\Models\Customer;
+use App\Models\Profile;
+
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -51,16 +55,13 @@ class User extends Authenticatable
         return $this->hasOne(Customer::class);
     }
     
-    public function profile()
-    {
+    public function seller() {
+        return $this->hasOne(Seller::class);
+    }
+    
+    public function profile() {
         return $this->hasOne(Profile::class);
     }
-
-    
-public function seller()
-{
-    return $this->hasOne(Seller::class);
-}
 
     
 

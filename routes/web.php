@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +21,18 @@ Route::get('/', function () {
 Route::prefix('/admin')->namespace('App\Http\Controllers\admin')->group(function(){
     Route::get('dashboard','AdminController@dashboard');
 });
+
+
+
+
 Route::get('/login', function () {
-    return view('admin.login'); // تأكد من أن اسم الملف 'login.blade.php'
+    return view('admin.login'); 
 })->name('login');
 
 Route::get('/register', function () {
-    return view('admin.registr'); // تأكد من أن اسم الملف 'register.blade.php'
+    return view('admin.registr'); 
 })->name('registr');
+
+Route::post('/register', [SellerController::class, 'registerSeller'])->name('seller.register');
+Route::post('/login', [SellerController::class, 'loginSeller'])->name('seller.login');
+

@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\Result;
 
 class Customer extends Model
 {
@@ -24,5 +25,11 @@ public function imageAnalysis()
 {
     return $this->hasOne(ImageAnaly::class);
 }
+
+public function result()
+{
+    return $this->hasOne(Result::class);
+}
+
 
 }

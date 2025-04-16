@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PythonController;
@@ -8,6 +9,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageAnalysisController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\ResultController;
+
+
 
 
 
@@ -31,8 +37,8 @@ Route::post('/auth/login', [UserController::class, 'login']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/customer', [CustomerController::class, 'store']);
-    Route::get('/customer', [CustomerController::class, 'getProfile']);
+    Route::post('/customer', [UserController::class, 'store']);
+    Route::get('/customer', [UserController::class, 'getProfile']);
 });
 
 
@@ -48,6 +54,41 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/image_analysis', [ImageAnalysisController::class, 'uploadAndAnalyze']);
 });
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/seller', [SellerController::class, 'show']);
+   
+});
+
+
+Route::middleware('auth:sanctum')->put('/seller/update', [SellerController::class, 'updateSellerData']);
+
+
+
+Route::post('customer/{customerId}/result', [ResultController::class, 'storeOrUpdateResult']);
+
+
+Route::post('/seller/register', [SellerController::class, 'registerSeller']);//postman
+Route::post('/seller/login', [SellerController::class, 'loginSeller']);//postman
+
+
+
+Route::post('/register', [SellerController::class, 'registerSeller'])->name('seller.register');
+
+
+
+Route::post('/category', [CategoryController::class, 'add']);
+Route::get('/category/{id}', [CategoryController::class, 'show']);
+
+
+
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::put('/products/{id}', [ProductController::class, 'update']);
+Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 
 

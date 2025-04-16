@@ -33,21 +33,34 @@ class ImageAnalysisController extends Controller
                 $customer = $user->customer;
 
                 if ($customer) {
+                    $imageUrl = asset('storage/images/' . $filename);
 
-                    $imageAnalysis = ImageAnaly::create([
-                        'image_url' => asset('storage/images/' . $filename),
-                        'skin_tone_result' => $decoded['tone'],
-                        'customer_id' => $customer->id,  // 
-                    ]);
-                    
+                    // إذا كانت الصورة موجودة
+                    if ($customer->image_analysis_id) {
+                        $imageAnalysis = ImageAnaly::find($customer->image_analysis_id);
 
-                    $customer->update([
-                        'image_analysis_id' => $imageAnalysis->id,
-                    ]);
+                        if ($imageAnalysis) {
+                            $imageAnalysis->update([
+                                'image_url' => $imageUrl,
+                                'skin_tone_result' => $decoded['tone'],
+                            ]);
+                        }
+                    } else {
+                        $imageAnalysis = ImageAnaly::create([
+                            'image_url' => $imageUrl,
+                            'skin_tone_result' => $decoded['tone'],
+                            'customer_id' => $customer->id,
+                        ]);
+
+                        // نربط النتيجة بالعميل
+                        $customer->update([
+                            'image_analysis_id' => $imageAnalysis->id,
+                        ]);
+                    }
 
                     return response()->json([
                         'success' => true,
-                        'image_url' => asset('storage/images/' . $filename),
+                        'image_url' => $imageUrl,
                         'result' => $decoded,
                     ]);
                 }
