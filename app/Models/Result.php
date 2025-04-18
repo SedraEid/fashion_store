@@ -19,4 +19,5 @@ class Result extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+    
 }

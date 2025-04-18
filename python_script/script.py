@@ -12,11 +12,11 @@ class SkinAnalyzer:
         l, a, b = lab_values
         
         if a>b:
-            return "دافئة"
+            return "Warm"
         elif b>a:
-            return "باردة"
+            return "Colde"
         else:
-            return "معتدلة"
+            return "Natural"
 
     def analyze(self, img_path):
         try:

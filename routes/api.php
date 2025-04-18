@@ -32,6 +32,11 @@ use App\Http\Controllers\ResultController;
 |
 */
 Route::post('/analyze-skin', [PythonController::class, 'analyzeSkin']);/////////
+
+
+
+
+
 Route::post('/auth/register', [UserController::class, 'register']);
 Route::post('/auth/login', [UserController::class, 'login']);
 
@@ -45,7 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile', [ProfileController::class, 'store']);
     Route::get('/profile', [ProfileController::class, 'show']);
-    Route::put('/profile', [ProfileController::class, 'update']);
+    Route::put('/profile', [ProfileController::class, 'update']);  //update profile 
 });
 
 
@@ -66,8 +71,11 @@ Route::middleware('auth:sanctum')->put('/seller/update', [SellerController::clas
 
 
 
-Route::post('customer/{customerId}/result', [ResultController::class, 'storeOrUpdateResult']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/customer/result', [ResultController::class, 'storeOrUpdateResult']);
+});  //تبع الاسئلة
 
+//////
 
 Route::post('/seller/register', [SellerController::class, 'registerSeller']);//postman
 Route::post('/seller/login', [SellerController::class, 'loginSeller']);//postman

@@ -32,6 +32,9 @@ class ProductController extends Controller
             'product' => $product
         ], 201);
     }
+
+
+
     public function show($id)
     {
         $product = Product::find($id);
@@ -42,6 +45,11 @@ class ProductController extends Controller
 
         return response()->json($product, 200);
     }
+
+
+
+
+    
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
@@ -57,6 +65,10 @@ class ProductController extends Controller
             'product' => $product
         ], 200);
     }
+
+
+
+
     public function destroy($id)
     {
         $product = Product::find($id);

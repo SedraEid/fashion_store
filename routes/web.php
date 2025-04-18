@@ -25,13 +25,16 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\admin')->group(function
 
 
 
-Route::get('/login', function () {
+Route::get('/login1', function () {
     return view('admin.login'); 
 })->name('login');
 
-Route::get('/register', function () {
+Route::get('/register1', function () {
     return view('admin.registr'); 
 })->name('registr');
+
+
+
 
 Route::post('/register', [SellerController::class, 'registerSeller'])->name('seller.register');
 Route::post('/login', [SellerController::class, 'loginSeller'])->name('seller.login');
