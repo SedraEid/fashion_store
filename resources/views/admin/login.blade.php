@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Admin | Log in</title>
 
   <!-- Google Font: Source Sans Pro -->
  <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="{{ url('admin/plugins/fontawesome-free/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ url('admin1/plugins/fontawesome-free/css/all.min.css') }}">
 
 <!-- icheck bootstrap -->
-<link rel="stylesheet" href="{{ url('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url('admin1/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
 <!-- Theme style -->
-<link rel="stylesheet" href="{{ url('admin/css/adminlte.min.css') }}">
+<link rel="stylesheet" href="{{ url('admin1/css/adminlte.min.css') }}">
 
 </head>
 <body class="hold-transition login-page">
@@ -41,7 +41,7 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block" >Sign In</button>
           </div>
         </div>
       </form>
@@ -60,8 +60,8 @@
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="{{ url('admin/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ url('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ url('admin/js/adminlte.min.js') }}"></script>
+<script src="{{ url('admin1/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ url('admin1/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url('admin1/js/adminlte.min.js') }}"></script>
 </body>
 </html>

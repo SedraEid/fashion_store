@@ -12,7 +12,7 @@ class ImageAnalysisController extends Controller
     public function uploadAndAnalyze(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp,bmp,tiff,svg,heic,avif|max:2048',
         ]);
 
         $image = $request->file('image');
@@ -35,7 +35,6 @@ class ImageAnalysisController extends Controller
                 if ($customer) {
                     $imageUrl = asset('storage/images/' . $filename);
 
-                    // إذا كانت الصورة موجودة
                     if ($customer->image_analysis_id) {
                         $imageAnalysis = ImageAnaly::find($customer->image_analysis_id);
 

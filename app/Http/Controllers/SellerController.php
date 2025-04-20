@@ -57,7 +57,10 @@ class SellerController extends Controller
             'message' => 'تم تسجيل البائع بنجاح',
             'user' => $user,
             'token' => $token,
+            'redirect_url' => route('seller.dashboard'),
         ], 201);
+        
+        
     }
 
 

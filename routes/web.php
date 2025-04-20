@@ -18,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/admin')->namespace('App\Http\Controllers\admin')->group(function(){
-    Route::get('dashboard','AdminController@dashboard');
-});
+
 
 
 
@@ -34,8 +32,19 @@ Route::get('/register1', function () {
 })->name('registr');
 
 
-
+Route::get('/home', function () {
+    return view('admin.home'); 
+})->name('home');
 
 Route::post('/register', [SellerController::class, 'registerSeller'])->name('seller.register');
 Route::post('/login', [SellerController::class, 'loginSeller'])->name('seller.login');
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/seller/dashboard', function () {
+        return view('admin.home');
+    })->name('seller.dashboard');
+});
+
+
+
 
